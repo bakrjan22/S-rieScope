@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Isometra&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body style="background-color: #080808;">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark ">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="bg-white rounded-3 me-3 d-flex justify-content-center align-items-center" style="width: 40px;height: 40px;">
+                    <i class="fa-solid fa-clapperboard" style="color: rgb(0, 0, 0); scale: 1.4;"></i>
+                </div>
+                <a class="navbar-brand" href="#">Sériescope</a>
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <div class="pt-3 pb-2">
+            <h1 class="fs-3">Explore les séries TV</h1>
+            <h2 class="fs-6 fw-lighter" style="color: #BABABA;">Retrouve tes séries préférées et enrichis le catalogue.</h2>
+        </div>
+    </section>
+
+    <section class="rounded-3 p-2 pb-2" style="background-color: #131313; border: 1px solid #525151;">
+        <h2 style="font-size: 20px;">Ajouter une série</h2>
+        <h2 style="font-size: 10px; font-weight: 300;">Les champs marqués d’un * sont obligatoires.</h2>
+        <div class="top-inputs">
+
+            <div class="block_inp">
+                <div class="mb-3">
+                    <label class="form-label">Nom de la série *</label>
+                    <input type="text" class="fee form-control bg-transparent" style="border: 1px solid #525151;"  placeholder="Ex. The Bear">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" style="display: flex; align-items: center;">Genre(s) *<p style="margin: 0px; font-size: 10px; margin-left: 10px; color: #BABABA;">séparés par des virgules</p></label>
+                    <input type="text" class="form-control bg-transparent custom-input" style="border: 1px solid #525151;" placeholder="Ex. Drame, Comédie">
+                </div>
+            </div>
+            <div>
+                <div class="mb-3">
+                    <label class="form-label" style="display: flex; align-items: center;">Description<p style="margin: 0px; font-size: 10px; margin-left: 10px; color: #BABABA;">facultative</p></label>
+                    <input type="text" class="form-control bg-transparent custom-input" style="border: 1px solid #525151;" placeholder="Résume la série en quelques mots…">
+                </div>
+            </div>
+        </div>
+        <button class="bg-white" style="color: black;width: 100%; height: 40px; border-radius: 10px;border: 1px solid #525151;">＋ Ajouter la série</button>
+    </section>
+
+    <section class="rounded-3 p-2 mt-3" style="">
+        <h2 style="font-size: 20px;">Ajouter une série</h2>
+        <h2 style="font-size: 10px; font-weight: 300;">Les champs marqués d’un * sont obligatoires.</h2>
+    </section>
+
+    <section class="rounded-3 p-2 pb-2" style="background-color: #131313; border: 1px solid #525151;">
+        <div class="block_inp">
+            <div class="mb-3">
+                <label class="form-label">Recherche</label>
+                <input type="text" class="fee form-control bg-transparent" style="border: 1px solid #525151;"  placeholder="Ex. Breaking Bad">
+            </div>
+        </div>
+
+        <div class="block_inp">
+            <div class="mb-3">
+                <label class="form-label">Recherche</label>
+                <input type="text" class="fee form-control bg-transparent" style="border: 1px solid #525151;"  placeholder="Ex. Breaking Bad">
+                <option value="">
+
+                </option>
+                <button class="bg-transparent p-2 rounded-3" style="border: 1px solid #525151;"><i class="fa-solid fa-rotate-left" style="color: rgb(255, 255, 255);"></i>Réinitialiser</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+<script src="./script.js"></script>

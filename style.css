@@ -1,0 +1,13 @@
+*{
+    color: white;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background-color: #080808;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.fee {
+    border: red;
+}
