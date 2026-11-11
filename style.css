@@ -85,3 +85,22 @@ body {
     padding: 5px;
     border-radius: 20px;
 }
+.mb-3 select{
+    width: 100%;
+    background-color: transparent;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.showmore {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.showmore button {
+    padding: 20px;
+    background-color: transparent;
+    color: white;
+    border-radius: 20px;
+    border: 1px solid white;
+}

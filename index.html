@@ -35,41 +35,43 @@
 
             <div class="block_inp">
                 <div class="mb-3">
-                    <label class="form-label">Nom de la série *</label>
-                    <input type="text" class="fee form-control bg-transparent" style="border: 1px solid #525151;"  placeholder="Ex. The Bear">
+                    <label class="form-label" >Nom de la série *</label>
+                    <input type="text" id="add_movie_name" class="fee form-control bg-transparent" style="border: 1px solid #525151;"  placeholder="Ex. The Bear">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" style="display: flex; align-items: center;">Genre(s) *<p style="margin: 0px; font-size: 10px; margin-left: 10px; color: #BABABA;">séparés par des virgules</p></label>
-                    <input type="text" class="form-control bg-transparent custom-input" style="border: 1px solid #525151;" placeholder="Ex. Drame, Comédie">
+                    <input type="text" id="add_movie_genres" class="form-control bg-transparent custom-input" style="border: 1px solid #525151;" placeholder="Ex. Drame, Comédie">
                 </div>
             </div>
             <div>
                 <div class="mb-3">
                     <label class="form-label" style="display: flex; align-items: center;">Description<p style="margin: 0px; font-size: 10px; margin-left: 10px; color: #BABABA;">facultative</p></label>
-                    <input type="text" class="form-control bg-transparent custom-input" style="border: 1px solid #525151;" placeholder="Résume la série en quelques mots…">
+                    <input type="text" id="add_movie_desc" class="form-control bg-transparent custom-input" style="border: 1px solid #525151;" placeholder="Résume la série en quelques mots…">
                 </div>
             </div>
         </div>
-        <button class="bg-white" style="color: black;width: 100%; height: 40px; border-radius: 10px;border: 1px solid #525151;">＋ Ajouter la série</button>
+        <button id="ajouter_movie" class="bg-white" style="color: black;width: 100%; height: 40px; border-radius: 10px;border: 1px solid #525151;">＋ Ajouter la série</button>
     </section>
 
-    <section class="rounded-3 p-2 mt-3" style="">
-        <h2 style="font-size: 20px;">Ajouter une série</h2>
-        <h2 style="font-size: 10px; font-weight: 300;">Les champs marqués d’un * sont obligatoires.</h2>
+    <section class="rounded-3 p-2 mt-3" >
+        <h2 style="font-size: 20px;">Catalogue des séries</h2>
+        <h2 style="font-size: 10px; font-weight: 300;">Recherche par nom ou explore un genre.</h2>
     </section>
 
     <section class="rounded-3 p-2 pb-2" style="background-color: #131313; border: 1px solid #525151;">
         <div class="recherche_block">
             <div class="mb-3">
-                <label class="form-label">Nom de la série *</label>
-                <input type="text" class="fee form-control bg-transparent" style="border: 1px solid #525151;"  placeholder="Ex. The Bear">
+                <label class="form-label">Recherche</label>
+                <input type="text" id="recherche" class="fee form-control bg-transparent" style="border: 1px solid #525151;"  placeholder="Ex. The Bear">
             </div>
             <div class="mb-3">
-                <label class="form-label">Nom de la série *</label>
-                <input type="text" class="fee form-control bg-transparent" style="border: 1px solid #525151;"  placeholder="Ex. The Bear">
+                <label class="form-label">Genre</label>
+                <select id="genres_select">
+                    
+                </select>
             </div>
             <div class="mb-3 btn-reset">
-                <button class="bg-transparent p-2 rounded-3" style="border: 1px solid #525151;"><i class="fa-solid fa-rotate-left" style="color: rgb(255, 255, 255);"></i>Réinitialiser</button>
+                <button class="bg-transparent p-2 rounded-3" id="reset" style="border: 1px solid #525151;"><i class="fa-solid fa-rotate-left" style="color: rgb(255, 255, 255);"></i>Réinitialiser</button>
             </div>
         </div>
     </section>
@@ -87,7 +89,7 @@
         </div> -->
         
     </section>
-    <section>
+    <section class="showmore">
         <button id="show_more">SHOW MORE</button>
     </section>
 </body>
