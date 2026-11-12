@@ -10,7 +10,7 @@ export const add_movie_name = document.getElementById("add_movie_name");
 export const add_movie_genres = document.getElementById("add_movie_genres");
 export const add_movie_desc = document.getElementById("add_movie_desc");
 export const ajouter_movie = document.getElementById("ajouter_movie");
-
+export const totale_displayed = document.getElementById("totale_displayed");
 export function movie_card(pic_url,movie_name,genres,desc){
     const card = document.createElement("div");
     card.classList.add("card-movie");

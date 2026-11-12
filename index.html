@@ -58,24 +58,29 @@
         <h2 style="font-size: 10px; font-weight: 300;">Recherche par nom ou explore un genre.</h2>
     </section>
 
-    <section class="rounded-3 p-2 pb-2" style="background-color: #131313; border: 1px solid #525151;">
+    <section class="rounded-3 p-2 pb-2 recherche_part" style="background-color: #131313; border: 1px solid #525151;">
         <div class="recherche_block">
             <div class="mb-3">
                 <label class="form-label">Recherche</label>
                 <input type="text" id="recherche" class="fee form-control bg-transparent" style="border: 1px solid #525151;"  placeholder="Ex. The Bear">
             </div>
+            <div class="down_rech">
             <div class="mb-3">
                 <label class="form-label">Genre</label>
-                <select id="genres_select">
+                <select id="genres_select" class="genres_select">
                     
                 </select>
             </div>
-            <div class="mb-3 btn-reset">
+            <div class="mb-3 btn-reset resetbtn">
                 <button class="bg-transparent p-2 rounded-3" id="reset" style="border: 1px solid #525151;"><i class="fa-solid fa-rotate-left" style="color: rgb(255, 255, 255);"></i>Réinitialiser</button>
+            </div>
             </div>
         </div>
     </section>
 
+    <section>
+        <h3 id="totale_displayed"></h3>
+    </section>
     <section class="movie-container" id="movie-container">
 
         <!-- TEMPLATE -->
