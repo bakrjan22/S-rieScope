@@ -39,6 +39,23 @@ let utility_methods = {
         return new_chain;
     }
 }
+export function get_detail_with_id(id){
+    let detail_obj = [];
+    movies_data.then((movies) => {
+        for(let i = 0; i < movies.length;i++){
+
+            if(movies[i].id == id){
+                for(let key in movies[i]){
+                    if(typeof movies[i][key] == "object"){
+                       continue;
+                    }else{
+                        detail_obj.push(movies[i][key]);
+                    }
+                }
+            }
+        }});
+        return detail_obj;
+}
 function get_all_genres() {
     movies_data.then((movies) => {
         for(let i = 0; i < movies.length;i++)
@@ -57,7 +74,7 @@ let display_methods = {
         totale_displayed_val = 0;
         if(display_config.filterName == "" && display_config.filterGenre == ""){
             for(let i = 0;i < display_config.showMin;i++){
-                movie_card(movies_obj[i].movie_img,movies_obj[i].movie_name,movies_obj[i].movie_genres,movies_obj[i].movie_desc);
+                movie_card(movies_obj[i].movie_img,movies_obj[i].movie_name,movies_obj[i].movie_genres,movies_obj[i].movie_desc,movies_obj[i].movie_id);
             }
         }else{
             movies_obj = movies_obj.filter(n=>n.movie_name.includes(recherche.value));
@@ -71,7 +88,7 @@ let display_methods = {
                 return;
             }
             for(let i = 0;i < display_config.showMin;i++){                
-                movie_card(movies_obj[i].movie_img,movies_obj[i].movie_name,movies_obj[i].movie_genres,movies_obj[i].movie_desc);
+                movie_card(movies_obj[i].movie_img,movies_obj[i].movie_name,movies_obj[i].movie_genres,movies_obj[i].movie_desc,movies_obj[i].movie_id);
                 totale_displayed.textContent = i + 1;
             }
            // console.log("Movie in Object : ",movies_obj);
@@ -89,6 +106,7 @@ let display_methods = {
         movies_data.then((movies) => {
             for(let i = 0; i < movies.length;i++){
                 movies_obj.push({
+                    movie_id:movies[i].id,
                     movie_name:movies[i].name,
                     movie_desc:utility_methods.remouve_balise(utility_methods.get_firts_str(movies[i].summary,100)),
                     movie_genres:movies[i].genres,

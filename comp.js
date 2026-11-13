@@ -1,4 +1,4 @@
-import { our_movies_genres } from "./script.js";
+import { our_movies_genres,get_detail_with_id } from "./script.js";
 
 export const movie_container = document.getElementById("movie-container");
 export const more = document.getElementById("show_more");
@@ -11,7 +11,10 @@ export const add_movie_genres = document.getElementById("add_movie_genres");
 export const add_movie_desc = document.getElementById("add_movie_desc");
 export const ajouter_movie = document.getElementById("ajouter_movie");
 export const totale_displayed = document.getElementById("totale_displayed");
-export function movie_card(pic_url,movie_name,genres,desc){
+
+export function movie_card(pic_url,movie_name,genres,desc,id){
+    console.log(id);
+    
     const card = document.createElement("div");
     card.classList.add("card-movie");
 
@@ -22,6 +25,15 @@ export function movie_card(pic_url,movie_name,genres,desc){
 
     const info = document.createElement("div");
     info.classList.add("info");
+
+    const detail = document.createElement("i");
+    detail.className = "fa-solid fa-circle-info";
+    detail.style = "color: rgb(255, 255, 255); cursor:pointer";
+
+    detail.addEventListener("click", () => {
+        let movie_detail = get_detail_with_id(id);
+        console.log(movie_detail);
+    })
 
     const title = document.createElement("h3");
     title.id = "movie-name";
@@ -44,7 +56,7 @@ export function movie_card(pic_url,movie_name,genres,desc){
     info.append(title, theme, description);
 
     card.append(img, info);
-
+    info.append(detail);
     movie_container.appendChild(card);
 }
 
