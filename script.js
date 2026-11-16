@@ -77,26 +77,32 @@ let display_methods = {
                 movie_card(movies_obj[i].movie_img,movies_obj[i].movie_name,movies_obj[i].movie_genres,movies_obj[i].movie_desc,movies_obj[i].movie_id);
             }
         }else{
-            movies_obj = movies_obj.filter(n=>n.movie_name.includes(recherche.value));
+            
+            let filtered_movies = [...movies_obj];
+
+            filtered_movies = filtered_movies.filter(n =>
+                n.movie_name.toLowerCase().includes(recherche.value.toLowerCase())
+            );
+
             if(display_config.filterGenre !== "" && display_config.filterGenre != "All"){
-                movies_obj = movies_obj.filter(n=>n.movie_genres.includes(display_config.filterGenre));
-            }
-            if(recherche.value != "" && movie_container.innerHTML == ""){
-                totale_displayed.textContent = 0;
-                console.log("fff");    
-            }else{
-                return;
-            }
-            for(let i = 0;i < display_config.showMin;i++){                
-                movie_card(movies_obj[i].movie_img,movies_obj[i].movie_name,movies_obj[i].movie_genres,movies_obj[i].movie_desc,movies_obj[i].movie_id);
-                totale_displayed.textContent = i + 1;
-            }
-           // console.log("Movie in Object : ",movies_obj);
+                filtered_movies = filtered_movies.filter(n =>
+                n.movie_genres.includes(display_config.filterGenre)
+            );            
         }
-        
-        
-        
-        
+            
+        for(let i = 0; i < display_config.showMin && i < filtered_movies.length; i++){
+        movie_card(
+            filtered_movies[i].movie_img,
+            filtered_movies[i].movie_name,
+            filtered_movies[i].movie_genres,
+            filtered_movies[i].movie_desc,
+            filtered_movies[i].movie_id
+        );
+
+        totale_displayed.textContent = i + 1;
+    }
+           // console.log("Movie in Object : ",movies_obj);
+        }  
     },
     show_more(){
         display_config.showMin += 5;
