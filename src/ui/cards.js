@@ -1,4 +1,4 @@
-import { our_movies_genres,get_detail_with_id } from "./script.js";
+import { our_movies_genres } from "../../script.js";
 
 export const movie_container = document.getElementById("movie-container");
 export const more = document.getElementById("show_more");
@@ -12,9 +12,50 @@ export const add_movie_desc = document.getElementById("add_movie_desc");
 export const ajouter_movie = document.getElementById("ajouter_movie");
 export const totale_displayed = document.getElementById("totale_displayed");
 
-export function movie_card(pic_url,movie_name,genres,desc,id){
-    console.log(id);
+export function error_event(error){
+    alert(error_event);
+}
+export function loading_event(request, show) {
+    let loading_card = document.querySelector(".loading_card");
     
+    if (show === false) {
+        if (loading_card) {
+            loading_card.remove();
+        }
+        return;
+    }
+    if (loading_card) {
+        loading_card.remove();
+    }
+
+    loading_card = document.createElement("div");
+    loading_card.className = "loading_card";
+
+    let h1_text = document.createElement("h1");
+    h1_text.textContent = "Loading...";
+
+    let rrequest = document.createElement("h2");
+    rrequest.textContent = request + " Wait";
+
+    loading_card.appendChild(h1_text);
+    loading_card.appendChild(rrequest);
+
+    document.body.appendChild(loading_card);
+}
+function cleanText(txt) {
+    if (typeof txt !== "string") {
+        return "";
+    }
+
+    return txt
+        .replace(/<[^>]*>/g, "")
+        .slice(0, 100) + "...";
+}
+export function movie_card(pic_url,movie_name,genres,desc,id){
+    if(desc == "" || desc == null){
+        desc = "This movie dont have any summary"
+    }
+    console.log(id);
     const card = document.createElement("div");
     card.classList.add("card-movie");
 
@@ -30,28 +71,21 @@ export function movie_card(pic_url,movie_name,genres,desc,id){
     detail.className = "fa-solid fa-circle-info";
     detail.style = "color: rgb(255, 255, 255); cursor:pointer";
 
-    detail.addEventListener("click", () => {
-        let movie_detail = get_detail_with_id(id);
-        console.log(movie_detail);
-    })
-
     const title = document.createElement("h3");
     title.id = "movie-name";
     title.textContent = movie_name;
 
     const theme = document.createElement("div");
     theme.classList.add("theme");
-
-
-
-    for(let i = 0;i < genres.length;i++){
+    
+    genres.forEach(genre => {
         const span1 = document.createElement("span");
-        span1.textContent = genres[i];
+        span1.textContent = genre;
         theme.append(span1);
-    }
+    });
 
     const description = document.createElement("p");
-    description.textContent = desc;
+    description.textContent = cleanText(desc);
     
     info.append(title, theme, description);
 
