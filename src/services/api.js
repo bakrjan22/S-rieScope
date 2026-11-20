@@ -1,6 +1,8 @@
 import { Movies } from "../../script.js";
+import { Display, FindPosById } from "./serieService.js";
 
 const url = "https://seriescope-api.vercel.app/api";
+
 async function BaseApi() {
     let Base = await axios.create({
         baseURL: url,
@@ -55,4 +57,32 @@ export async function CreateMovie(ConfigAjoute) {
         console.log(err);
     }
 }
-
+export async function SupprimerById(id) {
+    try {
+        let base = await BaseApi();
+        const res = await base.delete("/series/"+id);
+        Movies.splice(FindPosById(id),1);
+        await Display(Movies);
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+export async function EditeMovieById(id,MovieObj) {
+    try{
+        console.log(MovieObj);
+        
+        let base = await BaseApi();
+        let res = await base.patch("/series/"+id, {
+            name:MovieObj.name,
+            genres:MovieObj.genre,
+            summary:MovieObj.summary,
+        });
+        Movies[FindPosById(id)] = res.data;
+        await Display(Movies);
+        
+    }catch(err){
+        console.log(err);
+        
+    }
+}

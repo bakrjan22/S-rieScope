@@ -1,4 +1,7 @@
-import { our_movies_genres } from "../../script.js";
+import { Movies, our_movies_genres, startAsyncEvent } from "../../script.js";
+import { ConfigAjoute, FormType } from "../data/store.js";
+import { EditeMovieById, SupprimerById } from "../services/api.js";
+import { Display } from "../services/serieService.js";
 
 export const movie_container = document.getElementById("movie-container");
 export const more = document.getElementById("show_more");
@@ -51,6 +54,9 @@ function cleanText(txt) {
         .replace(/<[^>]*>/g, "")
         .slice(0, 100) + "...";
 }
+function toggleValue(current, value1, value2) {
+    return current === value1 ? value2 : value1;
+}
 export function movie_card(pic_url,movie_name,genres,desc,id){
     if(desc == "" || desc == null){
         desc = "This movie dont have any summary"
@@ -71,6 +77,62 @@ export function movie_card(pic_url,movie_name,genres,desc,id){
     detail.className = "fa-solid fa-circle-info";
     detail.style = "color: rgb(255, 255, 255); cursor:pointer";
 
+    const supprimer = document.createElement("i")
+    supprimer.className = "fa-solid fa-trash";
+    supprimer.style = "color: rgb(189, 0, 0); padding-right:10px;cursor:pointer";
+
+    supprimer.addEventListener("click",()=> {
+        startAsyncEvent([SupprimerById(id)],"Deleting Wait");
+        console.log(id);
+    })
+
+    const edite = document.createElement("i")
+    
+    edite.style = "color: rgb(0, 255, 28);padding-right:10px;cursor:pointer";
+    edite.className = "fa-solid fa-pen";
+    
+
+    edite.addEventListener("click",() => {
+
+        if(FormType.EditeForId == -1 || FormType.EditeForId == id){
+            FormType.EditeForId = id;
+            edite.style = "color: rgb(255, 0, 0);padding-right:10px;cursor:pointer";
+            edite.className = "fa-solid fa-x";
+            FormType.StateType = toggleValue(FormType.StateType,true,false);
+            if(FormType.StateType == true){
+                //fill
+                console.log("Fill field");
+                add_movie_name.value = movie_name;
+                add_movie_genres.value = genres.join(",");
+                add_movie_desc.value = desc;
+                ConfigAjoute.name = add_movie_name.value;
+                ConfigAjoute.genre = add_movie_genres.value.split(",");
+                ConfigAjoute.summary = add_movie_desc.value;
+                ajouter_movie.textContent = "Modifier"
+                FormType.Type = "Modif";
+            }else{
+                //Clear
+                console.log("Clear field");
+
+                ajouter_movie.textContent = "＋ Ajouter la série"
+                FormType.Type = "Ajoute";
+                edite.style = "color: rgb(0, 255, 28);padding-right:10px;cursor:pointer";
+                edite.className = "fa-solid fa-pen";
+                FormType.EditeForId = -1;
+                add_movie_name.value = "";
+                add_movie_genres.value = "";
+                add_movie_desc.value = "";
+
+                ConfigAjoute.name = null;
+                ConfigAjoute.genre = null;
+                ConfigAjoute.summary = null;
+                return 0;
+            }
+        }else{
+            alert("Cancel your Editing before continue")
+        }
+    })
+
     const title = document.createElement("h3");
     title.id = "movie-name";
     title.textContent = movie_name;
@@ -87,7 +149,7 @@ export function movie_card(pic_url,movie_name,genres,desc,id){
     const description = document.createElement("p");
     description.textContent = cleanText(desc);
     
-    info.append(title, theme, description);
+    info.append(title, theme, description,supprimer,edite);
 
     card.append(img, info);
     info.append(detail);
